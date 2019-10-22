@@ -13,16 +13,55 @@ body {
   width: 100vw;
 }
 
-input:nth-of-type(1),
-input:nth-of-type(2) {
+/* */
+
+#gui-wrapper {
   position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 100px;
-  height: 10px;;
+  top: 15px;
+  left: 15px;
+  width: 150px;
+  height: auto;
+
+  display: grid;
+  grid-template-rows: 1fr 1fr;
 }
 
-input:nth-of-type(2) {
-  top: 25px;
-  left: 10px;
+.gui-slider {
+  display: grid;
+  grid-template: 1fr 1.25fr / 5fr 2fr;
+  place-items: center;
+}
+
+.gui-slider label {
+  grid-column: 1 / span 2;
+  justify-self: start;
+  color: white;
+}
+
+.gui-slider input[type="text"] {
+  width: 100%;
+  height: 100%;
+}
+
+input[type="range"] {
+  width: 100px;
+  height: 10px;
+}
+
+input[type="range"]:nth-of-type(1) {
+  top: 15px;
+  left: 15px;
+}
+
+input[type="range"]:nth-of-type(2) {
+  top: 30px;
+  left: 15px;
+}
+
+button {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  width: 15px;
+  height: 15px;
 }

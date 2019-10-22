@@ -1,35 +1,16 @@
-import { slider } from "./gui/slider.js";
+import { state } from "./state.js";
+import { canvas, context } from "./canvas.js";
 
-const gui = document.createElement("div");
-document.body.appendChild(gui);
-const { slider: n} = slider(gui);
-const { slider: d } = slider(gui);
-
-
-const state = {
-  origin: [0, 0],
-  n: 2,
-  d: 29,
-  scale: 375,
-  background: "rgb(19, 19, 21)",
-  lineWidth: 1,
-  lineColour: "rgba(120, 120, 250, 0.5)",
-};
-
-// getting canvas
-const canvas = document.getElementById("canvas");
-const context = canvas.getContext("2d");
-
-// setting fullscreen
-const { innerWidth: width, innerHeight: height } = window;
-[ canvas.width, canvas.height ] = [ width, height ];
-
-// making usual coordinate system 
-context.translate(width / 2, height / 2);
-context.scale(1, -1);
-
-const draw = state => {
+export function draw(context, state) {
   const { origin, n, d, scale, background, lineWidth, lineColour } = state;
+
+  // setting fullscreen
+  const { innerWidth: width, innerHeight: height } = window;
+  [ canvas.width, canvas.height ] = [ width, height ];
+
+  // making usual coordinate system 
+  context.translate(width / 2, height / 2);
+  context.scale(1, -1);
 
   // reset canvas
   context.fillStyle = background;
@@ -43,10 +24,8 @@ const draw = state => {
   context.moveTo(...origin);
 
   for (let k = 0; k < 361; k++) {
-
     const radians = Math.PI / 180 * (k * d);
     const radius = scale * Math.sin(n * radians);  
-  
     context.lineTo(
       radius * Math.cos(radians),
       radius * Math.sin(radians)
@@ -56,15 +35,61 @@ const draw = state => {
   context.stroke();
 };
 
-draw(state);
+draw(context, state);
 
+const screenshot = (draw, state) => {
+  const tempCanvas = document.createElement("canvas");
+  const tempContext = tempCanvas.getContext("2d");  
 
-n.addEventListener("input", event => {
-  state.n = parseInt(event.target.value, 10);
-  draw(state);
+  const { width, height } = state.screenshot;
+  [ tempCanvas.width, tempCanvas.height ] = [ width, height ];
+  tempContext.translate(width / 2, height / 2);
+  tempContext.scale(1, -1);
+
+  draw(tempContext, { ...state, scale: state.screenshot.scale });
+
+  const dataURLtoBlob = dataurl => {
+    const arr = dataurl.split(',');
+    const mime = arr[0].match(/:(.*?);/)[1];
+    const bstr = atob(arr[1]);
+    let n = bstr.length;
+    let u8arr = new Uint8Array(n);
+
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+
+    return new Blob([u8arr], { type: mime });
+  };
+  
+  const link = document.createElement("a");
+  const imgData = tempCanvas.toDataURL({
+    format: "png",
+    multiplier: 4
+  });
+  const blob = dataURLtoBlob(imgData);
+  const objurl = URL.createObjectURL(blob);
+
+  link.download = "MaurerRose.png";
+  link.href = objurl;
+  link.click();
+};
+
+const button = document.createElement("button");
+document.body.appendChild(button);
+button.addEventListener("click", event => {
+  screenshot(draw, state);
 });
 
-d.addEventListener("input", event => {
-  state.d = parseInt(event.target.value, 10);
-  draw(state);
-});
+
+/* // resize -> redraw
+window.addEventListener("resize", event => {
+  const { innerWidth: width, innerHeight: height } = window;
+  context.canvas.width = width;
+  context.canvas.height = height;
+  draw(context, state, width, height);
+}); */
+
+import { makeGUI } from "./gui/gui.js";
+
+makeGUI();
