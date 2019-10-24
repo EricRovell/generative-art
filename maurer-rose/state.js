@@ -1,4 +1,7 @@
-export const state = {
+import { draw } from "./main.js";
+import { context } from "./canvas.js";
+
+const state = {
   origin: [0, 0],
   n: 6,
   d: 71,
@@ -13,16 +16,12 @@ export const state = {
   },
 };
 
-
-const onChange = (state, render) => {
-  const handler = {
-    set(target, property, receiver) {
-      render();
-      const value = Reflect.get(target, property, receiver);
-      if (typeof value === "object") return new Proxy(value, handler);
-      return value;
-    }
-  };
-
-  return new Proxy(state, handler);
+const handler = {
+  set(target, property, value) {
+    target[property] = value;
+    draw(context, state);
+    return true;    
+  }
 };
+
+export default new Proxy(state, handler);

@@ -1,8 +1,4 @@
-import { state } from "../state.js";
-
-import { draw } from "../main.js";
-
-export const initGUI = [
+export default [
 
   {
     type: "slider",
@@ -11,7 +7,6 @@ export const initGUI = [
     max: 360,
     defaultVal: 6,
     variable: "d",
-    draw,
   },
 
   {
@@ -21,7 +16,23 @@ export const initGUI = [
     max: 360,
     defaultVal: 29,
     variable: "n",
-    draw,
+  },
+
+  {
+    type: "slider",
+    name: "scale",
+    min: 50,
+    max: 900,
+    defaultVal: 320,
+    variable: "scale",
+  },
+
+  {
+    type: "color-text",
+    model: "rgba",
+    name: "stroke color, rgb",
+    defaultVal: "120, 120, 250, 0.55",
+    variable: "lineColour",
   },
 
 ];

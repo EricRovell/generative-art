@@ -1,7 +1,6 @@
-import { state } from "../state.js";
-import { context } from "../canvas.js";
+import state from "../state.js";
 
-export const slider = ({ name, min, max, defaultVal, variable, draw }) => {
+export const slider = ({ name, min, max, defaultVal, variable }) => {
   const container = document.createElement("div");
   const label = document.createElement("label");
   const slider = document.createElement("input");
@@ -29,14 +28,12 @@ export const slider = ({ name, min, max, defaultVal, variable, draw }) => {
     const mutatedValue = parseInt(event.target.value, 10);
     state[variable] = mutatedValue;
     value.value = mutatedValue;
-    draw(context, state);
   });
 
   value.addEventListener("input", event => {
     const mutatedValue = parseInt(event.target.value, 10);
     slider.value = mutatedValue;
     state[variable] = mutatedValue;
-    draw(context, state);
   });
 
   container.className = "gui-slider";

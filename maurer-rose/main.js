@@ -1,4 +1,4 @@
-import { state } from "./state.js";
+import state from "./state.js";
 import { canvas, context } from "./canvas.js";
 
 export function draw(context, state) {
