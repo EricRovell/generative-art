@@ -1,4 +1,61 @@
 @import "./gui-wrapper.css";
 
-@import "./slider.css";
-@import "./color-text.css";
+@import "../controllers/styles/container.css";
+@import "../controllers/styles/slider-range.css";
+@import "../controllers/styles/color-picker.css";
+@import "../controllers/styles/screenshot-canvas.css";
+
+:root {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 14px;
+}
+
+#gui-wrapper[data-theme="light"] {
+  --bg-main: rgba(227, 227, 227, 0.95);
+  --bg-ternary: rgba(204, 204, 204, 0.95);
+  --bg-secondary-hover: rgba(208, 208, 208, 0.95);
+  --foreground: rgba(105, 105, 105, 0.95);
+  --text-main: rgba(36, 36, 36, 0.95);
+  --text-secondary: rgba(87, 87, 87, 0.95);
+}
+
+#gui-wrapper[data-theme="dark"] {
+  --bg-main: rgba(28, 28, 31, 0.95);
+  --bg-secondary: rgb(19, 19, 19);
+  --bg-ternary: rgba(75, 75, 75, 0.95);
+  --bg-secondary-hover: rgba(58, 58, 58, 0.95);
+  --accent: rgb(75, 75, 75);
+  --foreground: rgba(112, 112, 112, 0.95);
+  --text-main: rgba(235, 235, 235, 0.95);
+  --text-secondary: rgba(200, 200, 200, 0.95);
+  --icon: lightgray;
+}
+
+
+/* globals */
+
+.gui-icon {
+  cursor: pointer;
+}
+
+label {
+  color: var(--text-secondary);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* input type number - incrementors visibility */
+
+input[type=number]::-webkit-inner-spin-button {
+  opacity: 0;
+  fill: yellow;
+}
+
+input[type=number],
+input[type=text] {
+  background: var(--accent);
+  color: var(--text-secondary);
+  outline: none;
+  border: none;
+}

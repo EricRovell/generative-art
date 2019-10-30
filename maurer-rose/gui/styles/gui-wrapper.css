@@ -2,36 +2,68 @@
   position: absolute;
   top: 15px;
   left: 15px;
-  min-width: 200px;
-  width: 5vw;
   height: auto;
 
   display: grid;
   row-gap: 10px;
   grid-auto-flow: row;
-  grid-auto-rows: fit-content;
+  grid-auto-rows: 1fr;
+  grid-auto-columns: 300px;
   place-items: stretch;
 
   padding: 10px;
-  background: rgb(28, 28, 31);
+  background: var(--bg-main);
+}
+
+.gui-section {
+  display: grid;
+  grid-template-rows: 1fr;
+}
+
+.gui-section-title {
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+  cursor: pointer;
+  user-select: none;
+}
+
+.gui-section-body {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-auto-rows: 1fr;
+  grid-auto-flow: row;
+  row-gap: 7.5px;
+  max-height: auto;
+  margin-top: 15px;
+}
+
+.gui-section-body--hidden {
+  max-height: 0;
+  overflow: hidden;
+  margin-top: 0px;
 }
 
 #gui-wrapper > div {
-  background: rgb(19, 19, 19);
+  background: var(--bg-secondary);
   padding: 10px;
 }
 
-#gui-hide {
-  height: 100%;
-  height: 15px;
-  outline: none;
-  border: none;
+.gui-section-title h3 {
+  grid-column: 2;
+  text-align: center;
+  color: var(--text-main);
 }
 
-/* globals */
+.gui-section-title svg {
+  grid-column: 3;
+  height: 100%;
+  fill: var(--icon);
+  width: 50%;
+  justify-self: end;
 
-#gui-wrapper label {
-  color: #D1D1D1;
-  width: 100%;
-  border-bottom: 1px solid rgba(250, 250, 250, 0.25);
+  display: flex;
+}
+
+.gui-section-title path {
+  height: 100%;
 }

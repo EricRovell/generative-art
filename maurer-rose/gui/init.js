@@ -3,36 +3,61 @@ export default [
   {
     type: "slider",
     name: "d",
+    tip: "incremental angle",
     min: 0,
     max: 360,
-    defaultVal: 6,
+    initial: 6,
     variable: "d",
   },
 
   {
     type: "slider",
     name: "n",
+    tip: "step factor",
     min: 0,
     max: 360,
-    defaultVal: 29,
+    initial: 29,
     variable: "n",
   },
 
   {
     type: "slider",
+    name: "steps",
+    tip: "number of walk-steps",
+    min: 0,
+    max: 360,
+    initial: 360,
+    variable: "steps",
+  },
+
+  {
+    type: "slider",
     name: "scale",
+    tip: "scale factor for Maurer Rose",
     min: 50,
     max: 900,
-    defaultVal: 320,
+    initial: 320,
     variable: "scale",
   },
 
   {
-    type: "color-text",
+    type: "color-picker",
     model: "rgba",
-    name: "stroke color, rgb",
-    defaultVal: "120, 120, 250, 0.55",
+    tip: "Stroke color in RGBA model",
+    name: "stroke, rgb",
+    initial: "120, 120, 250, 0.55",
     variable: "lineColour",
   },
 
+  {
+    type: "screenshot-canvas",
+    name: "screenshot",
+    tip: "Set the dimentions and download a screenshot",
+    initial: {
+      width: window.innerWidth,
+      height: window.innerHeight,
+    },
+    variable: "screenshot",
+  }
+  
 ];

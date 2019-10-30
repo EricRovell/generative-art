@@ -1,0 +1,24 @@
+.gui-color {
+  display: grid;
+  grid-template-columns: 75px 0.25fr 1.25fr;
+  column-gap: 15px;
+  place-items: fit-content;
+}
+
+.gui-color input[type="text"] {
+  width: 100%;
+  text-align: center;
+}
+
+input[type="color"] {
+	-webkit-appearance: none;
+	border: none;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+	padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+	border: none;
+}

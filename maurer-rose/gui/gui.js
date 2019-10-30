@@ -1,55 +1,59 @@
 import initGUI from "./init.js";
 
-import { slider } from "./slider.js";
-import { ColorInput } from "./ColorInput.js";
+import state from "../state.js";
 
-const hideGUI = () => {
-  const hideButton = document.createElement("button");
-  hideButton.id = "gui-hide";
-  hideButton.type = "button";
-  hideButton.dataset.hidden = true;
+import SliderRange from "./controllers/slider-range.js";
+import ColorPicker from "./controllers/color.js";
+import ScreenshotCanvas from "./controllers/screenshot.js";
 
-  return hideButton;
-}
+import svgIcon from "./IconSystem/svgIcon.js";
 
 export const makeGUI = () => {
-  // here all forms will be stored
-  const guiWrapper = document.createElement("div");
-  guiWrapper.id = "gui-wrapper";
+  // main GUI container
+  const container = document.createElement("div");
+  container.setAttribute("id", "gui-wrapper");
+
+  // section
+  const guiSection = document.createElement("div");
+  const guiSectionTitle = document.createElement("div");
+  const guiSectionBody = document.createElement("div"); 
+  guiSection.setAttribute("class", "gui-section");
+  guiSectionTitle.setAttribute("class", "gui-section-title");
+  guiSectionBody.setAttribute("class", "gui-section-body");
+  guiSection.append(guiSectionTitle, guiSectionBody);
+  container.appendChild(guiSection);  
+  
+  // section title + collapse button
+  const title = document.createElement("h3");
+  const collapse = svgIcon({ href: "#gui-icon-plus" });
+  title.innerText = "Maurer Rose";
+  guiSectionTitle.append(title, collapse);
+  
+  // title -> collapse forms
+  guiSectionTitle.addEventListener("click", event => {
+    const element = guiSectionTitle.nextElementSibling;
+    element.classList.toggle("gui-section-body--hidden");
+  });
 
   // parse the settings object and add desired forms
   for (let form of initGUI) {
     switch (form.type) {  
       case "slider": {
-        guiWrapper.appendChild(slider(form));
+        guiSectionBody.appendChild(SliderRange(form, state));
         break;
-      }
-      case "color-text": {
-        guiWrapper.appendChild(ColorInput(form));
+      };
+      case "color-picker": {
+        guiSectionBody.appendChild(ColorPicker(form, state));
         break;
-      }  
+      };
+      case "screenshot-canvas": {
+        guiSectionBody.appendChild(ScreenshotCanvas(form, state));
+        break;
+      }   
     }
   }
 
-  // hide GUI
-  const hideGUIButton = hideGUI();
-  hideGUIButton.addEventListener("click", () => {
-    const state = (hideGUIButton.dataset.hidden == "true");
-    hideGUIButton.dataset.hidden = !state;    
-
-    const forms = guiWrapper.querySelectorAll("#gui-wrapper > div");
-    if (state) {      
-      forms.forEach(form => {
-        form.style.display = "none";
-      });
-    } else {
-      forms.forEach(form => {
-        form.style.display = "grid";
-      });
-    }
-  });
-  
-  guiWrapper.appendChild(hideGUIButton);
-  document.body.appendChild(guiWrapper);
+  container.setAttribute("data-theme", "dark");
+  document.body.appendChild(container);
 };
 

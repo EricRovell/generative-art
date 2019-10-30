@@ -1,5 +1,5 @@
-import { draw } from "./main.js";
-import state from "./state.js";
+import render from "./render.js";
+import state from "../state.js";
 
 // getting canvas
 const canvas = document.getElementById("canvas");
@@ -9,7 +9,7 @@ window.addEventListener("resize", () => {
   const { innerWidth: width, innerHeight: height } = window;
   canvas.width = width,
   canvas.height = height;
-  draw(context, state);
+  render(context, state);
 });
 
 export {

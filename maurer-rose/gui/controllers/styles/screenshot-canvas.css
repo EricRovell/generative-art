@@ -1,0 +1,17 @@
+.gui-screenshot-canvas {
+  display: grid;
+  grid-template: 1fr / 75px 0.6fr 0.6fr 0.3fr;
+  column-gap: 15px;
+  place-content: stretch;
+}
+
+.gui-screenshot-canvas svg {
+  height: 100%;
+  width: 100%;
+  fill: white;
+}
+
+.gui-screenshot-canvas input[type="number"] {
+  width: 100%;
+  text-align: center;
+}
