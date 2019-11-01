@@ -36,7 +36,7 @@ export default ({ name, initial, variable }, state) => {
     if (testRGBA(colorInput.value)) {
       const rgb = hexa2rgba(picked);
       colorInput.value = rgb;
-      state[variable] = rgb;
+      state[variable] = `rgba(${rgb.join(",")})`;
     }
   });
 
