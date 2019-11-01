@@ -4,16 +4,6 @@ import Value from "./value.js";
 
 import { rgba2hexa, hexa2rgba, rgb2hex, hex2rgb } from "../utility/convertColor.js";
 
-const evalRGB = string => {
-  const regex = /((25[0-5]|2[0-4]\d|1\d{1,2}|\d\d?)\s*,\s*?){2}(25[0-5]|2[0-4]\d|1\d{1,2}|\d\d?)\s*,?\s*([01]\.?\d*?)?/
-  if (regex.test(string)) {
-    const rgb = string
-      .split(",")
-      .map(Number);
-    return rgb;
-  }
-};
-
 const testHEX = value => {
   const regex = /[#](([0-9A-F]{8})|([0-9A-F]{6})|([0-9A-F]{4})|([0-9A-F]{3}))/i;
   return regex.test(value);
