@@ -2,12 +2,7 @@ import Container from "./container.js";
 import Label from "./label.js";
 import Value from "./value.js";
 
-const rgb2hex = (r, g, b) => "#" + (
-  [r, g, b].map(value => {
-    let hex = value.toString(16);
-    return hex.length === 1 ? `0${hex}` : hex;
-  })
-).join("");
+import { rgb2hex } from "../utility/convertColor.js";
 
 const evalRGB = string => {
   const regex = /((25[0-5]|2[0-4]\d|1\d{1,2}|\d\d?)\s*,\s*?){2}(25[0-5]|2[0-4]\d|1\d{1,2}|\d\d?)\s*,?\s*([01]\.?\d*?)?/
