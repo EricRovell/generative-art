@@ -42,8 +42,9 @@ export default [
 
   {
     type: "color-picker",
+    model: "rgba",
     tip: "Stroke color in RGBA model",
-    name: "stroke",
+    name: "stroke, rgb",
     initial: "120, 120, 250, 0.55",
     variable: "lineColour",
   },

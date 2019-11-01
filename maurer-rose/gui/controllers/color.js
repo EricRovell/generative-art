@@ -33,11 +33,12 @@ export default ({ name, initial, variable }, state) => {
       colorInput.value = picked;
       state[variable] = picked;
     }
-    if (testRGBA(colorInput.value)) {
+    /* if (testRGBA(colorInput.value)) {
       const rgb = hexa2rgba(picked);
       colorInput.value = rgb;
       state[variable] = `rgba(${rgb.join(",")})`;
-    }
+      console.log(state[variable]);
+    } */
   });
 
   colorInput.addEventListener("input", event => {
@@ -45,9 +46,9 @@ export default ({ name, initial, variable }, state) => {
     if (testRGBA(color)) {
       const rgb = color.split(",").map(Number);
       const hex = rgb2hex(...rgb);
-      console.log(`rgba(${rgb.join(",")})`);
       colorLabel.value = hex;
       state[variable] = `rgba(${rgb.join(",")})`;
+      console.log(state[variable]);
     }
     if (testHEX(color)) {
       if (color.length >= 7) {
