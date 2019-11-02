@@ -1,4 +1,5 @@
 import initGUI from "./init.js";
+import loadStyles from "./loadStyles.js";
 
 import state from "../state.js";
 
@@ -8,6 +9,8 @@ import Multibox from "./controllers/multibox.js";
 import ScreenshotCanvas from "./controllers/screenshot.js";
 
 import svgIcon from "./IconSystem/svgIcon.js";
+
+loadStyles();
 
 export const makeGUI = () => {
   // main GUI container

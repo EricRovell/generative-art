@@ -11,6 +11,12 @@
   font-size: 14px;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 #gui-wrapper[data-theme="light"] {
   --bg-main: rgba(227, 227, 227, 0.95);
   --bg-ternary: rgba(204, 204, 204, 0.95);
