@@ -44,9 +44,26 @@ export default [
     type: "color-picker",
     model: "rgba",
     tip: "Stroke color in RGBA model",
-    name: "stroke, rgb",
+    name: "stroke",
     initial: "120, 120, 250, 0.55",
     variable: "lineColour",
+  },
+
+  {
+    type: "multibox",
+    name: "some name",
+    boxes: [
+      {
+        tip: "box1",
+        initial: true,
+        variable: "box1",
+      },
+      {
+        tip: "box2",
+        initial: false,
+        variable: "box2",
+      },
+    ],
   },
 
   {

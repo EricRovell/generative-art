@@ -4,6 +4,7 @@ import state from "../state.js";
 
 import SliderRange from "./controllers/slider-range.js";
 import ColorPicker from "./controllers/color.js";
+import Multibox from "./controllers/multibox.js";
 import ScreenshotCanvas from "./controllers/screenshot.js";
 
 import svgIcon from "./IconSystem/svgIcon.js";
@@ -44,6 +45,10 @@ export const makeGUI = () => {
       };
       case "color-picker": {
         guiSectionBody.appendChild(ColorPicker(form, state));
+        break;
+      };
+      case "multibox": {
+        guiSectionBody.appendChild(Multibox(form, state));
         break;
       };
       case "screenshot-canvas": {
