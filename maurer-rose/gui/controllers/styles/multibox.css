@@ -1,0 +1,14 @@
+.gui-multibox {
+  display: grid;
+  grid-template: 1fr / 75px;
+  grid-auto-flow: column;
+  grid-auto-columns: 25px;
+  column-gap: 15px;
+  place-items: center;
+}
+
+.gui-multibox input[type=checkbox] {
+  width: 75%;
+  height: 75%;
+  background: var(--foreground);
+}

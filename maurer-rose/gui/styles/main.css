@@ -3,6 +3,7 @@
 @import "../controllers/styles/container.css";
 @import "../controllers/styles/slider-range.css";
 @import "../controllers/styles/color-picker.css";
+@import "../controllers/styles/multibox.css";
 @import "../controllers/styles/screenshot-canvas.css";
 
 :root {
@@ -43,6 +44,9 @@ label {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* input type number - incrementors visibility */
